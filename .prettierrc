@@ -1,0 +1,10 @@
+{
+  "semi": false,
+  "trailingComma": "all",
+  "singleQuote": true,
+  "printWidth": 80,
+  "arrowParens": "avoid",
+  "rules": {
+    "prettier/prettier": ["error", {"endOfLine": "auto"}]
+  }
+}
