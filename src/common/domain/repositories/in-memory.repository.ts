@@ -99,7 +99,7 @@ export abstract class InMemoryRepository<Model extends ModelProps>
       return items
     }
 
-    // Vai fazer a ordenação como pedido, de forma ascedente(1, 2, 3) ou decrescente(3, 2, 1).
+    // Vai fazer a ordenação como pedido, de forma ascedente(1, 2, 3) ou descedente(3, 2, 1).
     // Pegará dois valores e vai fazer comparações até estar ordenado.
     return [...items].sort((a, b) => {
       if (a[sort] < b[sort]) {
