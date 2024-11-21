@@ -44,4 +44,16 @@ SUT é a sigla para System Under Test (Sistema em Teste). É um termo usado em t
 
 Quando você está escrevendo testes automatizados, o SUT é o código que você está verificando para garantir que ele se comporta conforme esperado. Isso pode incluir uma função, um módulo, uma classe ou até mesmo um sistema completo.
 
+## Interface ProductsRepository
 
+Abstração específica para repositórios de produtos, que funciona como um contrato adicional para as implementações de reepositórios que manipulam produtos
+
+Os métodos adicionais que criados para repositórios de produtos são `findByName`, `findAllByIds` e `conflictingName`.
+
+## Dados massivos fakes para testes
+
+Para isso utilizei as biblioteca fakerJs para gera grandes quantidades de dados falsos (mas realistas) para teste.
+
+```shell
+  npm install @faker-js/faker --save-dev
+```
