@@ -6,7 +6,7 @@ export class CreateProducts1730939408169 implements MigrationInterface {
     await queryRunner.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"')
 
     // Gera a tabela com seu referente nome e campos da tabela.
-    // OBS: Caso queira colocar algu campo opcional, utiliza-se o "isNullable: true"
+    // OBS: Caso queira colocar algum campo opcional, utiliza-se o "isNullable: true"
     await queryRunner.createTable(
       new Table({
         name: 'products',

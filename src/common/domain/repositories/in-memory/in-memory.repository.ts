@@ -1,12 +1,12 @@
 // Funções de representação para testes em memória.
 
 import { randomUUID } from 'node:crypto'
-import { NotFoundError } from '../errors/not-found-error'
+import { NotFoundError } from '../../errors/not-found-error'
 import {
   RepositoryInterface,
   SearchInput,
   SearchOutput,
-} from './repository.interface'
+} from '../repository.interface'
 
 export type ModelProps = {
   id?: string
@@ -27,7 +27,7 @@ export abstract class InMemoryRepository<Model extends ModelProps>
     const model = {
       id: randomUUID(),
       create_at: new Date(),
-      updated_at: new Date(),
+      update_at: new Date(),
       ...props,
     }
     return model as unknown as Model
