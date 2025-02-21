@@ -13,7 +13,7 @@ const usersRouter = Router()
  *       required:
  *         - name
  *         - email
- *         - passowrd
+ *         - password
  *       properties:
  *         id:
  *           type: string
@@ -24,9 +24,9 @@ const usersRouter = Router()
  *         email:
  *           type: string
  *           description: The email of the user
- *         passowrd:
+ *         password:
  *           type: string
- *           description: The passowrd of the user
+ *           description: The password of the user
  *         avatar:
  *           type: string
  *           description: The avatar of the user
@@ -47,33 +47,33 @@ const usersRouter = Router()
  *         created_at: 2023-01-01T10:00:00Z
  *         updated_at: 2023-01-01T10:00:00Z
  *     UserListResponse:
- *      type: object
- *      properties:
- *        items:
- *          type: array
- *          items:
- *           $ref: '#/components/schemas/User'
- *        total:
- *          type: number
- *          description: The total number of users
- *        current_page:
- *          type: integer
- *          description: Current page number
- *        last_page:
- *          type: integer
- *          description: Last page number
- *        per_page:
- *          type: integer
- *          description: Number of items per page
- *        example:
- *          items:
- *            id: 50c33caa-c854-4a6a-85e2-c506828df026
- *            name: Sample User
- *            email: sample@example.com
- *            password: $2a$06$Q7vz5z7z7z7z7z7z7z7z
- *            avatar: null
- *            created_at: 2023-01-01T10:00:00Z
- *            updated_at: 2023-01-01T10:00:00Z
+ *       type: object
+ *       properties:
+ *         items:
+ *           type: array
+ *           items:
+ *             $ref: '#/components/schemas/User'
+ *         total:
+ *           type: number
+ *           description: The total number of users
+ *         current_page:
+ *           type: integer
+ *           description: Current page number
+ *         last_page:
+ *           type: integer
+ *           description: Last page number
+ *         per_page:
+ *           type: integer
+ *           description: Number of items per page
+ *       example:
+ *         items:
+ *           - id: 50c33caa-c854-4a6a-85e2-c506828df026
+ *             name: Sample User
+ *             email: sample@example.com
+ *             password: $2a$06$Q7vz5z7z7z7z7z7z7z7z
+ *             avatar: null
+ *             created_at: 2023-01-01T10:00:00Z
+ *             updated_at: 2023-01-01T10:00:00Z
  *         total: 15
  *         current_page: 1
  *         last_page: 10

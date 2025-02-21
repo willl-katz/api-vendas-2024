@@ -71,7 +71,7 @@ export class UsersTypeormRepository implements UsersRepository {
 
     const [users, total] = await this.usersRepository.findAndCount({
       // Caso o filter não seja nulo, aplicara um where, onde o nome do user seja de acordo com o nome passado no filtro, igual ou parecido.
-      ...(props.filter && { where: { name: ILike(props.filter) } }),
+      ...(props.filter && { where: { name: ILike(`%${props.filter}%`) } }),
       order: { [orderByField]: orderByDir },
       skip: (props.page - 1) * props.per_page,
       take: props.per_page,
