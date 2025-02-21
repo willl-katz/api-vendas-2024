@@ -11,7 +11,7 @@ export class ProductsInMemoryRepository
   extends InMemoryRepository<ProductModel>
   implements ProductsRepository
 {
-  sortableFields: string[] = ['name', 'create_at']
+  sortableFields: string[] = ['name', 'created_at']
 
   async findByName(name: string): Promise<ProductModel> {
     const product = this.items.find(item => item.name === name)
@@ -52,6 +52,6 @@ export class ProductsInMemoryRepository
     sort: string | null,
     sort_dir: string | null,
   ): Promise<ProductModel[]> {
-    return super.applySort(items, sort ?? 'create_at', sort_dir ?? 'desc')
+    return super.applySort(items, sort ?? 'created_at', sort_dir ?? 'desc')
   }
 }

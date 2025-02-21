@@ -16,8 +16,8 @@ export class Product implements ProductModel {
   quantity: number
 
   @CreateDateColumn({ name: 'created_at' })
-  create_at: Date
+  created_at: Date
 
   @UpdateDateColumn({ name: 'updated_at' })
-  update_at: Date
+  updated_at: Date
 }

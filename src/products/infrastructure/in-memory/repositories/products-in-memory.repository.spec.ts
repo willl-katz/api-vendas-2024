@@ -87,14 +87,14 @@ describe('ProductsInMemoryRepository unit tests', () => {
     it('should sort items by created_at when sort param is null', async () => {
       const newCreateAt = new Date()
       const items = [
-        ProductsDataBuilder({ name: 'c', create_at: newCreateAt }),
+        ProductsDataBuilder({ name: 'c', created_at: newCreateAt }),
         ProductsDataBuilder({
           name: 'a',
-          create_at: new Date(newCreateAt.getTime() + 100),
+          created_at: new Date(newCreateAt.getTime() + 100),
         }),
         ProductsDataBuilder({
           name: 'b',
-          create_at: new Date(newCreateAt.getTime() + 200),
+          created_at: new Date(newCreateAt.getTime() + 200),
         }),
       ]
       sut.items.push(...items)

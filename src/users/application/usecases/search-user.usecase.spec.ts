@@ -1,33 +1,34 @@
 import 'reflect-metadata'
-import { ProductsInMemoryRepository } from '@/products/infrastructure/in-memory/repositories/products-in-memory.repository'
-import { SearchProductUseCase } from './search-product.usecase'
-import { ProductsDataBuilder } from '@/products/infrastructure/testing/helpers/products-data-builder'
+import { SearchUserUseCase } from './search-user.usecase'
+import { UsersInMemoryRepository } from '@/users/infrastructure/in-memory/repositories/users-in-memory.repository'
+import { UsersDataBuilder } from '@/users/infrastructure/test/helpers/users-data-builder'
 
-describe('SearchProductUseCase Unit its', () => {
-  let sut: SearchProductUseCase.UseCase
-  let repository: ProductsInMemoryRepository
+describe('SearchUserUseCase Unit its', () => {
+  let sut: SearchUserUseCase.UseCase
+  let repository: UsersInMemoryRepository
 
   beforeEach(() => {
-    repository = new ProductsInMemoryRepository()
-    sut = new SearchProductUseCase.UseCase(repository)
+    repository = new UsersInMemoryRepository()
+    sut = new SearchUserUseCase.UseCase(repository)
   })
 
-  it('should return the products ordered by created_at', async () => {
+  it('should return the users ordered by created_at', async () => {
     const created_at = new Date()
     const items = [
-      { ...ProductsDataBuilder({}) },
+      { ...UsersDataBuilder({}) },
       {
-        ...ProductsDataBuilder({
+        ...UsersDataBuilder({
           created_at: new Date(created_at.getTime() + 100),
         }),
       },
       {
-        ...ProductsDataBuilder({
+        ...UsersDataBuilder({
           created_at: new Date(created_at.getTime() + 200),
         }),
       },
     ]
     repository.items = items
+    console.log(items)
 
     const result = await sut.execute({})
 
@@ -42,11 +43,11 @@ describe('SearchProductUseCase Unit its', () => {
 
   it('should return output using pagination, sort and filter', async () => {
     const items = [
-      { ...ProductsDataBuilder({ name: 'a' }) },
-      { ...ProductsDataBuilder({ name: 'AA' }) },
-      { ...ProductsDataBuilder({ name: 'Aa' }) },
-      { ...ProductsDataBuilder({ name: 'b' }) },
-      { ...ProductsDataBuilder({ name: 'c' }) },
+      { ...UsersDataBuilder({ name: 'a' }) },
+      { ...UsersDataBuilder({ name: 'AA' }) },
+      { ...UsersDataBuilder({ name: 'Aa' }) },
+      { ...UsersDataBuilder({ name: 'b' }) },
+      { ...UsersDataBuilder({ name: 'c' }) },
     ]
     repository.items = items
 

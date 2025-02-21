@@ -25,7 +25,7 @@ describe('CreateProductUseCase Unit Test', () => {
     const result = await sut.execute(props)
 
     expect(result.id).toBeDefined()
-    expect(result.create_at).toBeDefined()
+    expect(result.created_at).toBeDefined()
     expect(spyInsert).toHaveBeenCalledTimes(1)
   })
 

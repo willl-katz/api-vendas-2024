@@ -1,14 +1,14 @@
 import { testDataSource } from '@/common/infrastructure/typeorm/test/data-source'
-import { ProductsTypeormRepository } from './products-typeorm.repository'
-import { Product } from '../entities/products.entities'
 import { NotFoundError } from '@/common/domain/errors/not-found-error'
 import { randomUUID } from 'crypto'
-import { ProductsDataBuilder } from '../../testing/helpers/products-data-builder'
 import { ConflictError } from '@/common/domain/errors/conflict-error'
-import { ProductModel } from '@/products/domain/models/products.model'
+import { User } from '../entities/users.entity'
+import { UsersTypeormRepository } from './users-typeorm.repository'
+import { UsersDataBuilder } from '../../test/helpers/users-data-builder'
+import { UserModel } from '@/users/domain/models/users.model'
 
-describe('ProductsTypeormRepository integration tests', () => {
-  let ormRepository: ProductsTypeormRepository
+describe('UsersTypeormRepository integration tests', () => {
+  let ormRepository: UsersTypeormRepository
   let typeormEntityManager: any
 
   beforeAll(async () => {
@@ -19,81 +19,81 @@ describe('ProductsTypeormRepository integration tests', () => {
     await testDataSource.destroy()
   })
   beforeEach(async () => {
-    await testDataSource.manager.query('DELETE FROM products')
-    ormRepository = new ProductsTypeormRepository(
-      typeormEntityManager.getRepository(Product),
+    await testDataSource.manager.query('DELETE FROM users')
+    ormRepository = new UsersTypeormRepository(
+      typeormEntityManager.getRepository(User),
     )
   })
 
   describe('findById', () => {
-    it('should generate an error when the product is not found', async () => {
+    it('should generate an error when the user is not found', async () => {
       const id = randomUUID()
       await expect(ormRepository.findById(id)).rejects.toThrow(
-        new NotFoundError(`Product not found using ID ${id}`),
+        new NotFoundError(`User not found using ID ${id}`),
       )
     })
 
-    it('should finds a product by id', async () => {
-      const data = ProductsDataBuilder({})
-      const product = testDataSource.manager.create(Product, data)
-      await testDataSource.manager.save(product)
-      const result = await ormRepository.findById(product.id)
-      expect(result.id).toEqual(product.id)
-      expect(result.name).toEqual(product.name)
+    it('should finds a user by id', async () => {
+      const data = UsersDataBuilder({})
+      const user = testDataSource.manager.create(User, data)
+      await testDataSource.manager.save(user)
+      const result = await ormRepository.findById(user.id)
+      expect(result.id).toEqual(user.id)
+      expect(result.name).toEqual(user.name)
     })
   })
 
-  describe('create', () => {
-    it('should create a new product object', () => {
-      const data = ProductsDataBuilder({ name: 'Product 1' })
+  describe('created', () => {
+    it('should created a new user object', () => {
+      const data = UsersDataBuilder({ name: 'User 1' })
       const result = ormRepository.create(data)
       expect(result.name).toEqual(data.name)
     })
   })
 
   describe('insert', () => {
-    it('should insert a new product', async () => {
-      const data = ProductsDataBuilder({ name: 'Product 1' })
+    it('should insert a new user', async () => {
+      const data = UsersDataBuilder({ name: 'User 1' })
       const result = await ormRepository.insert(data)
       expect(result.name).toEqual(data.name)
     })
   })
 
   describe('update', () => {
-    it('should generate an error when the product is not found', async () => {
-      const data = ProductsDataBuilder({})
+    it('should generate an error when the user is not found', async () => {
+      const data = UsersDataBuilder({})
       await expect(ormRepository.update(data)).rejects.toThrow(
-        new NotFoundError(`Product not found using ID ${data.id}`),
+        new NotFoundError(`User not found using ID ${data.id}`),
       )
     })
 
-    it('should update a product', async () => {
-      const data = ProductsDataBuilder({})
-      const product = testDataSource.manager.create(Product, data)
-      await testDataSource.manager.save(product)
-      product.name = 'nome atualizado'
+    it('should update a user', async () => {
+      const data = UsersDataBuilder({})
+      const user = testDataSource.manager.create(User, data)
+      await testDataSource.manager.save(user)
+      user.name = 'nome atualizado'
 
-      const result = await ormRepository.update(product)
+      const result = await ormRepository.update(user)
       expect(result.name).toEqual('nome atualizado')
     })
   })
 
   describe('delete', () => {
-    it('should generate an error when the product is not found', async () => {
+    it('should generate an error when the user is not found', async () => {
       const id = randomUUID()
       await expect(ormRepository.delete(id)).rejects.toThrow(
-        new NotFoundError(`Product not found using ID ${id}`),
+        new NotFoundError(`User not found using ID ${id}`),
       )
     })
 
-    it('should delete a product', async () => {
-      const data = ProductsDataBuilder({})
-      const product = testDataSource.manager.create(Product, data)
-      await testDataSource.manager.save(product)
-      product.name = 'nome atualizado'
-      await ormRepository.delete(product.id)
+    it('should delete a user', async () => {
+      const data = UsersDataBuilder({})
+      const user = testDataSource.manager.create(User, data)
+      await testDataSource.manager.save(user)
+      user.name = 'nome atualizado'
+      await ormRepository.delete(user.id)
 
-      const result = await testDataSource.manager.findOneBy(Product, {
+      const result = await testDataSource.manager.findOneBy(User, {
         id: data.id,
       })
       expect(result).toBeNull()
@@ -101,40 +101,40 @@ describe('ProductsTypeormRepository integration tests', () => {
   })
 
   describe('findByName', () => {
-    it('should generate an error when the product is not found', async () => {
-      const name = 'Product Name'
+    it('should generate an error when the user is not found', async () => {
+      const name = 'User Name'
       await expect(ormRepository.findByName(name)).rejects.toThrow(
-        new NotFoundError(`Product not found using NAME ${name}`),
+        new NotFoundError(`User not found using NAME ${name}`),
       )
     })
 
-    it('should finds a product by name', async () => {
-      const data = ProductsDataBuilder({ name: 'Product 1' })
-      const product = testDataSource.manager.create(Product, data)
-      await testDataSource.manager.save(product)
+    it('should finds a user by name', async () => {
+      const data = UsersDataBuilder({ name: 'user 1' })
+      const user = testDataSource.manager.create(User, data)
+      await testDataSource.manager.save(user)
 
-      const result = await ormRepository.findByName(product.name)
-      expect(result.name).toEqual('Product 1')
+      const result = await ormRepository.findByName(user.name)
+      expect(result.name).toEqual('user 1')
     })
   })
 
-  describe('conflictingName', () => {
-    it('should generate an error when the product found', async () => {
-      const data = ProductsDataBuilder({ name: 'Product 1' })
-      const product = testDataSource.manager.create(Product, data)
-      await testDataSource.manager.save(product)
+  describe('conflictingEmail', () => {
+    it('should generate an error when the user found', async () => {
+      const data = UsersDataBuilder({ email: 'conflict@email.com' })
+      const user = testDataSource.manager.create(User, data)
+      await testDataSource.manager.save(user)
 
-      await expect(ormRepository.conflictingName(data.name)).rejects.toThrow(
-        new ConflictError(`Name already used by another product`),
+      await expect(ormRepository.conflictEmail(data.email)).rejects.toThrow(
+        new ConflictError(`Email already used on another user`),
       )
     })
   })
 
   describe('search', () => {
     it('should apply only pagination when the other params are null', async () => {
-      const arrange = Array(16).fill(ProductsDataBuilder({}))
+      const arrange = Array(16).fill(UsersDataBuilder({}))
       arrange.map(element => delete element.id)
-      const data = testDataSource.manager.create(Product, arrange)
+      const data = testDataSource.manager.create(User, arrange)
       await testDataSource.manager.save(data)
 
       const result = await ormRepository.search({
@@ -152,18 +152,18 @@ describe('ProductsTypeormRepository integration tests', () => {
 
     it('should order by created_at DESC when search params are null', async () => {
       const created_at = new Date()
-      const models: ProductModel[] = []
-      const arrange = Array(16).fill(ProductsDataBuilder({}))
+      const models: UserModel[] = []
+      const arrange = Array(16).fill(UsersDataBuilder({}))
       // Alterando os dados de modo a excluir os ids criados e atualizar as datas de criação para poder ordenadas no teste
       arrange.forEach((element, index) => {
         delete element.id
         models.push({
           ...element,
-          name: `Product ${index}`,
+          name: `user ${index}`,
           created_at: new Date(created_at.getTime() + index),
         })
       })
-      const data = testDataSource.manager.create(Product, models)
+      const data = testDataSource.manager.create(User, models)
       await testDataSource.manager.save(data)
 
       const result = await ormRepository.search({
@@ -174,22 +174,22 @@ describe('ProductsTypeormRepository integration tests', () => {
         filter: null,
       })
 
-      expect(result.items[0].name).toEqual('Product 15')
-      expect(result.items[14].name).toEqual('Product 1')
+      expect(result.items[0].name).toEqual('user 15')
+      expect(result.items[14].name).toEqual('user 1')
     })
 
     it('should apply pagination and sort', async () => {
       const created_at = new Date()
-      const models: ProductModel[] = []
+      const models: UserModel[] = []
       // Definindo a lista de teste, com o detalhe para os nomes que vão servir para a ordenação.
       'badec'.split('').forEach((element, index) => {
         models.push({
-          ...ProductsDataBuilder({}),
+          ...UsersDataBuilder({}),
           name: element,
           created_at: new Date(created_at.getTime() + index),
         })
       })
-      const data = testDataSource.manager.create(Product, models)
+      const data = testDataSource.manager.create(User, models)
       await testDataSource.manager.save(data)
 
       let result = await ormRepository.search({
@@ -219,17 +219,17 @@ describe('ProductsTypeormRepository integration tests', () => {
 
     it('should search using filter, sort and paginate', async () => {
       const created_at = new Date()
-      const models: ProductModel[] = []
+      const models: UserModel[] = []
       const values = ['test', 'a', 'TEST', 'd', 'TeSt']
       // Definindo a lista de teste, com o detalhe para os nomes que vão servir para a ordenação.
       values.forEach((element, index) => {
         models.push({
-          ...ProductsDataBuilder({}),
+          ...UsersDataBuilder({}),
           name: element,
           created_at: new Date(created_at.getTime() + index),
         })
       })
-      const data = testDataSource.manager.create(Product, models)
+      const data = testDataSource.manager.create(User, models)
       await testDataSource.manager.save(data)
 
       const result = await ormRepository.search({

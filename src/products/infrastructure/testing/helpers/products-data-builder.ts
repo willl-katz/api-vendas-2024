@@ -10,7 +10,7 @@ export function ProductsDataBuilder(props: Partial<ProductModel>): ProductModel 
       props.price ??
       Number(faker.commerce.price({ min: 100, max: 2000, dec: 2 })),
     quantity: props.quantity ?? 10,
-    create_at: props.create_at ?? new Date(),
-    update_at: props.update_at ?? new Date(),
+    created_at: props.created_at ?? new Date(),
+    updated_at: props.updated_at ?? new Date(),
   }
 }

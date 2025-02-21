@@ -17,7 +17,7 @@ import { inject, injectable } from 'tsyringe'
 
 @injectable()
 export class ProductsTypeormRepository implements ProductsRepository {
-  sortableFields: string[] = ['name', 'create_at']
+  sortableFields: string[] = ['name', 'created_at']
 
   constructor(
     @inject('ProductsDefaultTypeormRepository')
@@ -63,14 +63,14 @@ export class ProductsTypeormRepository implements ProductsRepository {
     await this.productsRepository.delete({ id })
   }
   async search(props: SearchInput): Promise<SearchOutput<ProductModel>> {
-    const validSort = this.sortableFields.includes(props.sort) || false
     const dirOps = ['asc', 'desc']
+    const validSort = this.sortableFields.includes(props.sort) || false
     const validSortDir = dirOps.includes(props.sort_dir?.toLowerCase()) || false
-    const orderByField = validSort ? props.sort : 'create_at'
+    const orderByField = validSort ? props.sort : 'created_at'
     const orderByDir = validSortDir ? props.sort_dir : 'desc'
 
     const [products, total] = await this.productsRepository.findAndCount({
-      // Caso o filter não seja nullo, aplicara um where, onde o nome do produto seja de acordo com o nome passado no filtro, igual ou parecido.
+      // Caso o filter não seja nulo, aplicara um where, onde o nome do produto seja de acordo com o nome passado no filtro, igual ou parecido.
       ...(props.filter && { where: { name: ILike(props.filter) } }),
       order: { [orderByField]: orderByDir },
       skip: (props.page - 1) * props.per_page,

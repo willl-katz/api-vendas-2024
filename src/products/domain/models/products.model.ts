@@ -3,6 +3,6 @@ export interface ProductModel {
   name: string
   price: number
   quantity: number
-  create_at: Date
-  update_at: Date
+  created_at: Date
+  updated_at: Date
 }

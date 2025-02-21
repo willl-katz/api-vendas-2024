@@ -1,4 +1,5 @@
 import { AppError } from "@/common/domain/errors/app-error"
+import { Schema } from 'zod'
 
 /**
  * @param schema Objeto com schema de validation para o zod
@@ -6,7 +7,7 @@ import { AppError } from "@/common/domain/errors/app-error"
  * @returns retorna os dados validados
  */
 
-export function dataValidation(schema: any, data: any) {
+export function dataValidation(schema: Schema, data: any) {
   const validatedData = schema.safeParse(data)
 
   if (validatedData.success == false) {

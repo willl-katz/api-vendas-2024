@@ -26,8 +26,8 @@ export abstract class InMemoryRepository<Model extends ModelProps>
   create(props: CreateProps): Model {
     const model = {
       id: randomUUID(),
-      create_at: new Date(),
-      update_at: new Date(),
+      created_at: new Date(),
+      updated_at: new Date(),
       ...props,
     }
     return model as unknown as Model
@@ -103,13 +103,13 @@ export abstract class InMemoryRepository<Model extends ModelProps>
     // Pegará dois valores e vai fazer comparações até estar ordenado.
     return [...items].sort((a, b) => {
       if (a[sort] < b[sort]) {
-        return sort_dir === 'asc' ? -1 : 1
+        return sort_dir === 'desc' ? 1 : -1;
       }
       if (a[sort] > b[sort]) {
-        return sort_dir === 'asc' ? 1 : -1
+        return sort_dir === 'desc' ? -1 : 1;
       }
-      return 0
-    })
+      return 0;
+    });
   }
 
   protected async applyPaginate(

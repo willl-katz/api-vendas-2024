@@ -8,6 +8,7 @@
     "test": "npx dotenv-cli -e .env.test -- jest --runInBand",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "typeorm-run": "npm run typeorm -- -d ./src/common/infrastructure/typeorm/index.ts migration:run",
+    "typeorm-create": "npm run typeorm migration:create",
     "pretest:int": "docker run --name testsdb -e POSTGRES_PASSWORD=postgres -p 5433:5432 -d postgres",
     "test:int": "npx dotenv-cli -e .env.test -- jest --runInBand --config ./jest.int.config.ts",
     "posttest:int": "docker stop testsdb && docker rm testsdb"
@@ -17,6 +18,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "dotenv-cli": "^7.4.2",
@@ -33,6 +35,7 @@
   "devDependencies": {
     "@eslint/js": "^9.9.0",
     "@faker-js/faker": "^9.2.0",
+    "@types/bcryptjs": "^2.4.6",
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/jest": "^29.5.14",
