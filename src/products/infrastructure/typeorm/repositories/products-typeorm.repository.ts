@@ -10,7 +10,6 @@ import {
 } from '@/products/domain/repositories/products.repository'
 import { ILike, In, Repository } from 'typeorm'
 import { Product } from '../entities/products.entities'
-import { dataSource } from '@/common/infrastructure/typeorm'
 import { NotFoundError } from '@/common/domain/errors/not-found-error'
 import { ConflictError } from '@/common/domain/errors/conflict-error'
 import { inject, injectable } from 'tsyringe'
