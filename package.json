@@ -4,7 +4,6 @@
   "main": "index.js",
   "scripts": {
     "dev": "npx dotenv-cli -e .env -- ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/common/infrastructure/http/server.ts",
-    "lint": "eslint .",
     "test": "npx dotenv-cli -e .env.test -- jest --runInBand",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "typeorm-run": "npm run typeorm -- -d ./src/common/infrastructure/typeorm/index.ts migration:run",
