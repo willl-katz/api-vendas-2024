@@ -1,8 +1,7 @@
 import { Router } from 'express'
-import { createUserController } from '../controllers/create-user.controller'
-import { searchUserController } from '../controllers/search-user.controller'
+import { authenticateUserController } from '../controllers/authenticate-user.controller'
 
-const usersRouter = Router()
+const authRouter = Router()
 
 /**
  * @swagger
@@ -87,73 +86,45 @@ const usersRouter = Router()
  *   description: The users managing API
  */
 
-
 /**
  * @swagger
- * /users:
+ * /auth/login:
  *   post:
- *     summary: Create a new user
+ *     summary: Authenticate a user
  *     tags: [Users]
  *     requestBody:
  *       required: true
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/User'
+ *             type: object
+ *             required:
+ *               - email
+ *               - password
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 format: email
+ *               password:
+ *                 type: string
+ *           example:
+ *             email:
+ *              type: string
+ *              format: email
+ *             password:
+ *              type: string
  *     responses:
- *       201:
- *         description: The user was successfully created
+ *       200:
+ *         description: The user was successfully authenticated
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/User'
  *       400:
  *         description: Input data not provided or invalid
- *       409:
- *         description: Email already used on another user
+ *       401:
+ *         description: Invalid credentials
  */
-usersRouter.post('/', createUserController)
+authRouter.post('/login', authenticateUserController)
 
-/**
- * @swagger
- * /users:
- *   get:
- *     summary: Search for users
- *     tags: [Users]
- *     parameters:
- *       - in: query
- *         name: page
- *         schema:
- *           type: integer
- *         description: The page number
- *       - in: query
- *         name: per_page
- *         schema:
- *           type: integer
- *         description: The number of items per page
- *       - in: query
- *         name: sort
- *         schema:
- *           type: string
- *         description: The field to sort
- *       - in: query
- *         name: sort_dir
- *         schema:
- *           type: string
- *         description: The direction to sort
- *       - in: query
- *         name: filter
- *         schema:
- *           type: string
- *         description: The filter to apply
- *     responses:
- *       200:
- *         description: The list of users
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/UserListResponse'
- */
-usersRouter.get('/', searchUserController)
-
-export { usersRouter }
+export { authRouter }
