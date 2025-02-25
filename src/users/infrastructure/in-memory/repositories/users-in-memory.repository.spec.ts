@@ -1,7 +1,8 @@
-import { NotFoundError } from '@/common/domain/errors/not-found-error'
-import { UsersInMemoryRepository } from './users-in-memory.repository'
-import { UsersDataBuilder } from '../../test/helpers/users-data-builder'
 import { ConflictError } from '@/common/domain/errors/conflict-error'
+import { NotFoundError } from '@/common/domain/errors/not-found-error'
+
+import { UsersDataBuilder } from '../../test/helpers/users-data-builder'
+import { UsersInMemoryRepository } from './users-in-memory.repository'
 
 describe('UsersInMemoryRepository Unit Tests', () => {
   let sut: UsersInMemoryRepository
@@ -53,9 +54,9 @@ describe('UsersInMemoryRepository Unit Tests', () => {
     it('should throw error when user found', async () => {
       const user = UsersDataBuilder({ email: 'repeat@email.com' })
       await sut.insert(user)
-      await expect(() =>
-        sut.conflictEmail(user.email),
-      ).rejects.toBeInstanceOf(ConflictError)
+      await expect(() => sut.conflictEmail(user.email)).rejects.toBeInstanceOf(
+        ConflictError,
+      )
       await expect(() => sut.conflictEmail(user.email)).rejects.toThrow(
         new ConflictError('Email already used on another user'),
       )
@@ -160,4 +161,3 @@ describe('UsersInMemoryRepository Unit Tests', () => {
     })
   })
 })
-

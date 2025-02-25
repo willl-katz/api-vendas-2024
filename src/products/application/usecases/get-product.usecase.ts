@@ -1,5 +1,7 @@
-import { ProductsRepository } from '@/products/domain/repositories/products.repository'
 import { inject, injectable } from 'tsyringe'
+
+import { ProductsRepository } from '@/products/domain/repositories/products.repository'
+
 import { ProductOutput } from '../dtos/product-output.dto'
 
 export namespace GetProductUseCase {
@@ -17,7 +19,9 @@ export namespace GetProductUseCase {
     ) {}
 
     async execute(input: Input): Promise<Output> {
-      const product: ProductOutput = await this.productsRepository.findById(input.id)
+      const product: ProductOutput = await this.productsRepository.findById(
+        input.id,
+      )
 
       return product
     }

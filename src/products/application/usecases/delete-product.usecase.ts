@@ -1,5 +1,6 @@
-import { ProductsRepository } from '@/products/domain/repositories/products.repository'
 import { inject, injectable } from 'tsyringe'
+
+import { ProductsRepository } from '@/products/domain/repositories/products.repository'
 
 export namespace DeleteProductUseCase {
   export type Input = {

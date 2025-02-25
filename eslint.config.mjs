@@ -1,20 +1,32 @@
-import globals from 'globals'
 import pluginJs from '@eslint/js'
-import tseslint from 'typescript-eslint'
-import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
+import eslintPluginTs from '@typescript-eslint/eslint-plugin'
+import tsParser from '@typescript-eslint/parser'
+import eslintPluginPrettier from 'eslint-plugin-prettier'
+import simpleImportSort from 'eslint-plugin-simple-import-sort'
+import globals from 'globals'
 
 export default [
-  { files: ['**/*.{js,mjs,cjs,ts}'] },
-  { languageOptions: { globals: globals.browser } },
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
   {
-    files: ['**/*.js', 'dist', 'build', 'node_modules'],
-    ...tseslint.configs.disableTypeChecked,
-  },
-  eslintPluginPrettierRecommended,
-  {
+    files: ['**/*.{js,mjs,cjs,ts,tsx}'],
+    languageOptions: {
+      globals: globals.browser,
+      parser: tsParser,
+      parserOptions: {
+        sourceType: 'module',
+        ecmaVersion: 'latest',
+      },
+    },
+    plugins: {
+      '@typescript-eslint': eslintPluginTs,
+      prettier: eslintPluginPrettier,
+      'simple-import-sort': simpleImportSort,
+    },
     rules: {
+      ...pluginJs.configs.recommended.rules,
+      ...eslintPluginTs.configs.recommended.rules,
+      ...eslintPluginPrettier.configs.recommended.rules,
+      'simple-import-sort/imports': 'error',
+      'simple-import-sort/exports': 'error',
       '@typescript-eslint/interface-name-prefix': 'off',
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
@@ -29,6 +41,18 @@ export default [
         { argsIgnorePattern: '^_' },
       ],
     },
-    extends: ["prettier"]
+  },
+  {
+    files: ['**/*.js'],
+    excludedFiles: ['dist/**/*', 'build/**/*', 'node_modules/**/*'],
+    languageOptions: {
+      parserOptions: {
+        sourceType: 'module',
+        ecmaVersion: 'latest',
+      },
+    },
+    rules: {
+      ...pluginJs.configs.recommended.rules,
+    },
   },
 ]

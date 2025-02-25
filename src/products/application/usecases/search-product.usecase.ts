@@ -1,8 +1,13 @@
-import { ProductsRepository } from '@/products/domain/repositories/products.repository'
 import { inject, injectable } from 'tsyringe'
-import { SearchInputDto } from '../dtos/search-input.dto'
+
 import { ProductModel } from '@/products/domain/models/products.model'
-import { PaginationOutputDto, PaginationOutputMapper } from '../dtos/pagination-output.dto'
+import { ProductsRepository } from '@/products/domain/repositories/products.repository'
+
+import {
+  PaginationOutputDto,
+  PaginationOutputMapper,
+} from '../dtos/pagination-output.dto'
+import { SearchInputDto } from '../dtos/search-input.dto'
 
 export namespace SearchProductUseCase {
   export type Input = SearchInputDto

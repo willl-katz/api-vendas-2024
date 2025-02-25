@@ -1,6 +1,8 @@
+import { inject, injectable } from 'tsyringe'
+
 import { BadRequestError } from '@/common/domain/errors/bad-request-error'
 import { ProductsRepository } from '@/products/domain/repositories/products.repository'
-import { inject, injectable } from 'tsyringe'
+
 import { ProductOutput } from '../dtos/product-output.dto'
 
 export namespace CreateProductUseCase {
@@ -27,7 +29,8 @@ export namespace CreateProductUseCase {
       await this.productsRepository.conflictingName(input.name)
 
       const product = this.productsRepository.create(input)
-      const createdProduct: ProductOutput = await this.productsRepository.insert(product)
+      const createdProduct: ProductOutput =
+        await this.productsRepository.insert(product)
 
       return createdProduct
     }

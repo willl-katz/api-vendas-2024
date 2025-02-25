@@ -1,11 +1,13 @@
 import 'reflect-metadata'
-import { AuthenticateUserUseCase } from './authenticate-user.usecase'
-import { UsersInMemoryRepository } from '@/users/infrastructure/in-memory/repositories/users-in-memory.repository'
+
+import { InvalidCredentialsError } from '@/common/domain/errors/invalid-credentials-error'
+import { NotFoundError } from '@/common/domain/errors/not-found-error'
 import { HashProvider } from '@/common/domain/providers/hash.provider'
 import { BcryptjsHashProvider } from '@/common/infrastructure/providers/hash-provider/bcryptjs-hash.provider'
+import { UsersInMemoryRepository } from '@/users/infrastructure/in-memory/repositories/users-in-memory.repository'
 import { UsersDataBuilder } from '@/users/infrastructure/test/helpers/users-data-builder'
-import { NotFoundError } from '@/common/domain/errors/not-found-error'
-import { InvalidCredentialsError } from '@/common/domain/errors/invalid-credentials-error'
+
+import { AuthenticateUserUseCase } from './authenticate-user.usecase'
 
 describe('AuthenticateUserUseCase', () => {
   let sut: AuthenticateUserUseCase.UseCase
@@ -40,7 +42,7 @@ describe('AuthenticateUserUseCase', () => {
       sut.execute({
         email: 'wrong-email@example.com',
         password: 'password123',
-      })
+      }),
     ).rejects.toBeInstanceOf(InvalidCredentialsError)
   })
 

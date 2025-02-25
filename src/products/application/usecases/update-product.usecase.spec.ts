@@ -1,9 +1,11 @@
 import 'reflect-metadata'
-import { UpdateProductUseCase } from './update-product.usecase'
-import { ProductsInMemoryRepository } from '@/products/infrastructure/in-memory/repositories/products-in-memory.repository'
-import { NotFoundError } from '@/common/domain/errors/not-found-error'
+
 import { ConflictError } from '@/common/domain/errors/conflict-error'
+import { NotFoundError } from '@/common/domain/errors/not-found-error'
+import { ProductsInMemoryRepository } from '@/products/infrastructure/in-memory/repositories/products-in-memory.repository'
 import { ProductsDataBuilder } from '@/products/infrastructure/testing/helpers/products-data-builder'
+
+import { UpdateProductUseCase } from './update-product.usecase'
 
 describe('UpdateProductUseCase Unit Tests', () => {
   let sut: UpdateProductUseCase.UseCase

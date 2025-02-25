@@ -1,8 +1,8 @@
-import { ProductModel } from './../models/products.model';
-import { RepositoryInterface } from './../../../common/domain/repositories/repository.interface';
+import { RepositoryInterface } from './../../../common/domain/repositories/repository.interface'
+import { ProductModel } from './../models/products.model'
 
 export type ProductId = {
-  id: string;
+  id: string
 }
 
 export type CreateProductProps = {

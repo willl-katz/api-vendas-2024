@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
-import { z } from 'zod'
 import { container } from 'tsyringe'
+import { z } from 'zod'
+
 import { dataValidation } from '@/common/infrastructure/validation/zod'
 import { UpdateProductUseCase } from '@/products/application/usecases/update-product.usecase'
 

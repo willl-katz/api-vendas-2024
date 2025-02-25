@@ -1,11 +1,13 @@
-import { testDataSource } from '@/common/infrastructure/typeorm/test/data-source'
-import { ProductsTypeormRepository } from './products-typeorm.repository'
-import { Product } from '../entities/products.entities'
-import { NotFoundError } from '@/common/domain/errors/not-found-error'
 import { randomUUID } from 'crypto'
-import { ProductsDataBuilder } from '../../testing/helpers/products-data-builder'
+
 import { ConflictError } from '@/common/domain/errors/conflict-error'
+import { NotFoundError } from '@/common/domain/errors/not-found-error'
+import { testDataSource } from '@/common/infrastructure/typeorm/test/data-source'
 import { ProductModel } from '@/products/domain/models/products.model'
+
+import { ProductsDataBuilder } from '../../testing/helpers/products-data-builder'
+import { Product } from '../entities/products.entities'
+import { ProductsTypeormRepository } from './products-typeorm.repository'
 
 describe('ProductsTypeormRepository integration tests', () => {
   let ormRepository: ProductsTypeormRepository

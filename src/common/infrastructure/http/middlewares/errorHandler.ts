@@ -1,5 +1,6 @@
-import { AppError } from '@/common/domain/errors/app-error'
 import { NextFunction, Request, Response } from 'express'
+
+import { AppError } from '@/common/domain/errors/app-error'
 
 export function errorHandler(
   err: Error,

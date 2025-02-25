@@ -1,4 +1,3 @@
-import { UserModel } from '@/users/domain/models/users.model'
 import {
   Column,
   CreateDateColumn,
@@ -6,6 +5,8 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm'
+
+import { UserModel } from '@/users/domain/models/users.model'
 
 @Entity('users')
 export class User implements UserModel {

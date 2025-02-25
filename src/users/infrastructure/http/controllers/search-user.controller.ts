@@ -1,9 +1,9 @@
-import { dataValidation } from "@/common/infrastructure/validation/zod"
-import { SearchUserUseCase } from "@/users/application/usecases/search-user.usecase"
-import { Request, Response } from "express"
-import { container } from "tsyringe"
-import { z } from "zod"
+import { Request, Response } from 'express'
+import { container } from 'tsyringe'
+import { z } from 'zod'
 
+import { dataValidation } from '@/common/infrastructure/validation/zod'
+import { SearchUserUseCase } from '@/users/application/usecases/search-user.usecase'
 
 export async function searchUserController(req: Request, res: Response) {
   const SearchUserParamSchema = z.object({
@@ -19,9 +19,8 @@ export async function searchUserController(req: Request, res: Response) {
     req.query,
   )
 
-  const searchUserUseCase: SearchUserUseCase.UseCase = container.resolve(
-    'SearchUserUseCase',
-  )
+  const searchUserUseCase: SearchUserUseCase.UseCase =
+    container.resolve('SearchUserUseCase')
 
   const users = await searchUserUseCase.execute({
     page: page ?? 1,

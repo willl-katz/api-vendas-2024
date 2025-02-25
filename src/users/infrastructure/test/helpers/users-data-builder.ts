@@ -1,6 +1,8 @@
-import { UserModel } from '@/users/domain/models/users.model'
-import { faker } from '@faker-js/faker' // Import faker library
 import { randomUUID } from 'node:crypto'
+
+import { faker } from '@faker-js/faker' // Import faker library
+
+import { UserModel } from '@/users/domain/models/users.model'
 
 export function UsersDataBuilder(props: Partial<UserModel>): UserModel {
   return {

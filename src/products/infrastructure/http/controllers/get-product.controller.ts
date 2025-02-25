@@ -1,10 +1,12 @@
-import { AppError } from '@/common/domain/errors/app-error'
 import { Request, Response } from 'express'
-import { z } from 'zod'
-import { ProductsTypeormRepository } from '../../typeorm/repositories/products-typeorm.repository'
 import { container } from 'tsyringe'
-import { GetProductUseCase } from '@/products/application/usecases/get-product.usecase'
+import { z } from 'zod'
+
+import { AppError } from '@/common/domain/errors/app-error'
 import { dataValidation } from '@/common/infrastructure/validation/zod'
+import { GetProductUseCase } from '@/products/application/usecases/get-product.usecase'
+
+import { ProductsTypeormRepository } from '../../typeorm/repositories/products-typeorm.repository'
 
 export async function getProductController(req: Request, res: Response) {
   const GetProductParamSchema = z.object({

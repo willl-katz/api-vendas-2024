@@ -1,17 +1,19 @@
-import {
-  CreateUserProps,
-  UsersRepository,
-} from '@/users/domain/repositories/users.repository'
 import { inject, injectable } from 'tsyringe'
 import { ILike, Repository } from 'typeorm'
-import { User } from '../entities/users.entity'
+
+import { ConflictError } from '@/common/domain/errors/conflict-error'
+import { NotFoundError } from '@/common/domain/errors/not-found-error'
 import {
   SearchInput,
   SearchOutput,
 } from '@/common/domain/repositories/repository.interface'
 import { UserModel } from '@/users/domain/models/users.model'
-import { NotFoundError } from '@/common/domain/errors/not-found-error'
-import { ConflictError } from '@/common/domain/errors/conflict-error'
+import {
+  CreateUserProps,
+  UsersRepository,
+} from '@/users/domain/repositories/users.repository'
+
+import { User } from '../entities/users.entity'
 
 @injectable()
 export class UsersTypeormRepository implements UsersRepository {

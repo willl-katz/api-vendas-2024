@@ -1,11 +1,13 @@
-import { testDataSource } from '@/common/infrastructure/typeorm/test/data-source'
-import { NotFoundError } from '@/common/domain/errors/not-found-error'
 import { randomUUID } from 'crypto'
+
 import { ConflictError } from '@/common/domain/errors/conflict-error'
+import { NotFoundError } from '@/common/domain/errors/not-found-error'
+import { testDataSource } from '@/common/infrastructure/typeorm/test/data-source'
+import { UserModel } from '@/users/domain/models/users.model'
+
+import { UsersDataBuilder } from '../../test/helpers/users-data-builder'
 import { User } from '../entities/users.entity'
 import { UsersTypeormRepository } from './users-typeorm.repository'
-import { UsersDataBuilder } from '../../test/helpers/users-data-builder'
-import { UserModel } from '@/users/domain/models/users.model'
 
 describe('UsersTypeormRepository integration tests', () => {
   let ormRepository: UsersTypeormRepository

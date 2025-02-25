@@ -1,6 +1,7 @@
 // Funções de representação para testes em memória.
 
 import { randomUUID } from 'node:crypto'
+
 import { NotFoundError } from '../../errors/not-found-error'
 import {
   RepositoryInterface,
@@ -103,13 +104,13 @@ export abstract class InMemoryRepository<Model extends ModelProps>
     // Pegará dois valores e vai fazer comparações até estar ordenado.
     return [...items].sort((a, b) => {
       if (a[sort] < b[sort]) {
-        return sort_dir === 'desc' ? 1 : -1;
+        return sort_dir === 'desc' ? 1 : -1
       }
       if (a[sort] > b[sort]) {
-        return sort_dir === 'desc' ? -1 : 1;
+        return sort_dir === 'desc' ? -1 : 1
       }
-      return 0;
-    });
+      return 0
+    })
   }
 
   protected async applyPaginate(

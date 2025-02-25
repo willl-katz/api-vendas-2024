@@ -1,12 +1,12 @@
-import express from 'express'
-import cors from 'cors'
 import 'express-async-errors'
 
-import { routes } from './routes'
-import { errorHandler } from './middlewares/errorHandler'
-
+import cors from 'cors'
+import express from 'express'
 import swaggerJSDoc from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
+
+import { errorHandler } from './middlewares/errorHandler'
+import { routes } from './routes'
 
 const options = {
   definition: {

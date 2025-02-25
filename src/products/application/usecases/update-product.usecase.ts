@@ -1,7 +1,9 @@
-import { ProductsRepository } from '@/products/domain/repositories/products.repository'
 import { inject, injectable } from 'tsyringe'
-import { ProductOutput } from '../dtos/product-output.dto'
+
 import { ConflictError } from '@/common/domain/errors/conflict-error'
+import { ProductsRepository } from '@/products/domain/repositories/products.repository'
+
+import { ProductOutput } from '../dtos/product-output.dto'
 
 export namespace UpdateProductUseCase {
   export type Input = {
@@ -36,7 +38,8 @@ export namespace UpdateProductUseCase {
         product.quantity = input.quantity
       }
 
-      const updatedProduct: ProductOutput = await this.productsRepository.update(product)
+      const updatedProduct: ProductOutput =
+        await this.productsRepository.update(product)
 
       return updatedProduct
     }

@@ -1,9 +1,11 @@
 import 'reflect-metadata'
-import { ProductsRepository } from '@/products/domain/repositories/products.repository'
-import { CreateProductUseCase } from './create-product.usecase'
-import { ProductsInMemoryRepository } from '@/products/infrastructure/in-memory/repositories/products-in-memory.repository'
-import { ConflictError } from '@/common/domain/errors/conflict-error'
+
 import { BadRequestError } from '@/common/domain/errors/bad-request-error'
+import { ConflictError } from '@/common/domain/errors/conflict-error'
+import { ProductsRepository } from '@/products/domain/repositories/products.repository'
+import { ProductsInMemoryRepository } from '@/products/infrastructure/in-memory/repositories/products-in-memory.repository'
+
+import { CreateProductUseCase } from './create-product.usecase'
 
 describe('CreateProductUseCase Unit Test', () => {
   let sut: CreateProductUseCase.UseCase

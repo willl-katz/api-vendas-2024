@@ -1,12 +1,14 @@
 import 'reflect-metadata'
-import { CreateUserUseCase } from './create-user.usecase'
+
+import { BadRequestError } from '@/common/domain/errors/bad-request-error'
+import { ConflictError } from '@/common/domain/errors/conflict-error'
+import { HashProvider } from '@/common/domain/providers/hash.provider'
+import { BcryptjsHashProvider } from '@/common/infrastructure/providers/hash-provider/bcryptjs-hash.provider'
 import { UsersRepository } from '@/users/domain/repositories/users.repository'
 import { UsersInMemoryRepository } from '@/users/infrastructure/in-memory/repositories/users-in-memory.repository'
-import { ConflictError } from '@/common/domain/errors/conflict-error'
-import { BadRequestError } from '@/common/domain/errors/bad-request-error'
-import { BcryptjsHashProvider } from '@/common/infrastructure/providers/hash-provider/bcryptjs-hash.provider'
-import { HashProvider } from '@/common/domain/providers/hash.provider'
 import { UsersDataBuilder } from '@/users/infrastructure/test/helpers/users-data-builder'
+
+import { CreateUserUseCase } from './create-user.usecase'
 
 describe('CreateUser', () => {
   let sut: CreateUserUseCase.UseCase

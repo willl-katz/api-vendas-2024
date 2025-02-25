@@ -1,10 +1,14 @@
-import { dataValidation } from "@/common/infrastructure/validation/zod";
-import { AuthenticateUserUseCase } from "@/users/application/usecases/authenticate-user.usecase";
-import { Request, Response } from "express";
-import { container } from "tsyringe";
-import { z } from "zod";
+import { Request, Response } from 'express'
+import { container } from 'tsyringe'
+import { z } from 'zod'
 
-export async function authenticateUserController(request: Request, response: Response): Promise<Response> {
+import { dataValidation } from '@/common/infrastructure/validation/zod'
+import { AuthenticateUserUseCase } from '@/users/application/usecases/authenticate-user.usecase'
+
+export async function authenticateUserController(
+  request: Request,
+  response: Response,
+): Promise<Response> {
   const bodySchema = z.object({
     email: z.string().email(),
     password: z.string(),

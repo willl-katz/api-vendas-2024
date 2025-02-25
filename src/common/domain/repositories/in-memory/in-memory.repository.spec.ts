@@ -1,6 +1,7 @@
 import { randomUUID } from 'crypto'
-import { InMemoryRepository } from './in-memory.repository'
+
 import { NotFoundError } from '../../errors/not-found-error'
+import { InMemoryRepository } from './in-memory.repository'
 
 type StubModelProps = {
   id: string

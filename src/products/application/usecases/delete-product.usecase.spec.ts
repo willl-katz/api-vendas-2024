@@ -1,8 +1,10 @@
-import "reflect-metadata"
+import 'reflect-metadata'
+
+import { NotFoundError } from '@/common/domain/errors/not-found-error'
 import { ProductsRepository } from '@/products/domain/repositories/products.repository'
 import { ProductsInMemoryRepository } from '@/products/infrastructure/in-memory/repositories/products-in-memory.repository'
-import { NotFoundError } from "@/common/domain/errors/not-found-error"
-import { DeleteProductUseCase } from "./delete-product.usecase"
+
+import { DeleteProductUseCase } from './delete-product.usecase'
 
 describe('GetProductUseCase Unit Test', () => {
   let sut: DeleteProductUseCase.UseCase
@@ -31,9 +33,8 @@ describe('GetProductUseCase Unit Test', () => {
   })
 
   it('should throws error when product not found', async () => {
-    await expect(
-      sut.execute({ id: 'fake-id' }),
-    ).rejects.toBeInstanceOf(NotFoundError)
+    await expect(sut.execute({ id: 'fake-id' })).rejects.toBeInstanceOf(
+      NotFoundError,
+    )
   })
-
 })

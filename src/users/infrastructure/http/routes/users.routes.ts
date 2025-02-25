@@ -1,4 +1,5 @@
 import { Router } from 'express'
+
 import { createUserController } from '../controllers/create-user.controller'
 import { searchUserController } from '../controllers/search-user.controller'
 
@@ -86,7 +87,6 @@ const usersRouter = Router()
  *   name: Users
  *   description: The users managing API
  */
-
 
 /**
  * @swagger

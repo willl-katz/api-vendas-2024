@@ -1,3 +1,8 @@
+import { inject, injectable } from 'tsyringe'
+import { ILike, In, Repository } from 'typeorm'
+
+import { ConflictError } from '@/common/domain/errors/conflict-error'
+import { NotFoundError } from '@/common/domain/errors/not-found-error'
 import {
   SearchInput,
   SearchOutput,
@@ -8,11 +13,8 @@ import {
   ProductId,
   ProductsRepository,
 } from '@/products/domain/repositories/products.repository'
-import { ILike, In, Repository } from 'typeorm'
+
 import { Product } from '../entities/products.entities'
-import { NotFoundError } from '@/common/domain/errors/not-found-error'
-import { ConflictError } from '@/common/domain/errors/conflict-error'
-import { inject, injectable } from 'tsyringe'
 
 @injectable()
 export class ProductsTypeormRepository implements ProductsRepository {

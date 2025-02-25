@@ -1,7 +1,9 @@
 import 'reflect-metadata'
-import { SearchUserUseCase } from './search-user.usecase'
+
 import { UsersInMemoryRepository } from '@/users/infrastructure/in-memory/repositories/users-in-memory.repository'
 import { UsersDataBuilder } from '@/users/infrastructure/test/helpers/users-data-builder'
+
+import { SearchUserUseCase } from './search-user.usecase'
 
 describe('SearchUserUseCase Unit its', () => {
   let sut: SearchUserUseCase.UseCase
