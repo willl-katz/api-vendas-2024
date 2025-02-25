@@ -11,7 +11,8 @@
     "typeorm-create": "npm run typeorm migration:create",
     "pretest:int": "docker run --name testsdb -e POSTGRES_PASSWORD=postgres -p 5433:5432 -d postgres",
     "test:int": "npx dotenv-cli -e .env.test -- jest --runInBand --config ./jest.int.config.ts",
-    "posttest:int": "docker stop testsdb && docker rm testsdb"
+    "posttest:int": "docker stop testsdb && docker rm testsdb",
+    "lint": "npx eslint --fix ."
   },
   "keywords": [],
   "author": "",
