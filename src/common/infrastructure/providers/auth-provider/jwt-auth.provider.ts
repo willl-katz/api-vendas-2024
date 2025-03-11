@@ -1,11 +1,13 @@
+import jwt from 'jsonwebtoken'
+
+import { InvalidCredentialsError } from '@/common/domain/errors/invalid-credentials-error'
 import {
   AuthProvider,
   GenerateAuthKeyProps,
   VerifyAuthKeyProps,
 } from '@/common/domain/providers/auth-provider'
-import jwt from 'jsonwebtoken'
+
 import { env } from '../../env'
-import { InvalidCredentialsError } from '@/common/domain/errors/invalid-credentials-error'
 
 type DecodedTokenProps = {
   sub: string
