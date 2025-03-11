@@ -1,3 +1,4 @@
+import 'reflect-metadata'
 import '@/common/infrastructure/container'
 
 import { env } from '../env'

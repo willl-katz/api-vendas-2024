@@ -38,12 +38,17 @@ describe('AuthenticateUserUseCase', () => {
   })
 
   it('should not be able to authenticate with wrong email', async () => {
+    const props = UsersDataBuilder({})
+    await repository.insert({
+      ...props,
+      password: await hashProvider.generateHash(props.password),
+    })
     await expect(
       sut.execute({
-        email: 'wrong-email@example.com',
-        password: 'password123',
+        email: 'wrongemail@example.com',
+        password: props.password,
       }),
-    ).rejects.toBeInstanceOf(InvalidCredentialsError)
+    ).rejects.toBeInstanceOf(NotFoundError)
   })
 
   it('should not be able to authenticate with wrong password', async () => {
@@ -57,6 +62,6 @@ describe('AuthenticateUserUseCase', () => {
         email: props.email,
         password: 'wrong password',
       }),
-    ).rejects.toBeInstanceOf(NotFoundError)
+    ).rejects.toBeInstanceOf(InvalidCredentialsError)
   })
 })

@@ -30,7 +30,6 @@ describe('SearchUserUseCase Unit its', () => {
       },
     ]
     repository.items = items
-    console.log(items)
 
     const result = await sut.execute({})
 

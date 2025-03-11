@@ -10,7 +10,7 @@ import { UsersDataBuilder } from '@/users/infrastructure/test/helpers/users-data
 
 import { CreateUserUseCase } from './create-user.usecase'
 
-describe('CreateUser', () => {
+describe('CreateUserUseCase', () => {
   let sut: CreateUserUseCase.UseCase
   let repository: UsersRepository
   let hashProvider: HashProvider
@@ -63,7 +63,7 @@ describe('CreateUser', () => {
     expect(sut.execute(props)).rejects.toBeInstanceOf(BadRequestError)
   })
 
-  it('should throws error when password not provided', () => {
+  it('should throws error when password not provided', async () => {
     const props = UsersDataBuilder({ password: null })
 
     expect(sut.execute(props)).rejects.toBeInstanceOf(BadRequestError)
