@@ -39,7 +39,7 @@ describe('CreateProductUseCase Unit Test', () => {
     }
 
     await sut.execute(props)
-    expect(sut.execute(props)).rejects.toBeInstanceOf(ConflictError)
+    await expect(sut.execute(props)).rejects.toBeInstanceOf(ConflictError)
   })
 
   it('should throws error when name not provided', async () => {
