@@ -22,7 +22,7 @@ describe('BcryptHashProvider Unit Tests', () => {
     expect(compare).toBeFalsy()
   })
 
-  it('should return true on invalid password and hash comparison', async () => {
+  it('should return true on valid password and hash comparison', async () => {
     const password = 'TestPasswordValid'
     const hash = await sut.generateHash(password)
     const compare = await sut.compareHash('TestPasswordValid', hash)
