@@ -36,7 +36,7 @@ Criaremos a abstração com as definições dos contratos a serem seguidos por c
   npm i -D jest ts-jest @types/jest
 ```
 
-- Aplicar as configurções necessárias no arquivo jest.config.
+- Aplicar as configurações necessárias no arquivo jest.config.
 
 ### Definição de SUT
 
