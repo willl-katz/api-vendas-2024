@@ -12,6 +12,6 @@ export function UsersDataBuilder(props: Partial<UserModel>): UserModel {
     password: props.password ?? faker.internet.password(),
     avatar: props.avatar ?? faker.image.avatar(),
     created_at: props.created_at ?? new Date(),
-    updated_at: props.created_at ?? new Date(),
+    updated_at: props.updated_at ?? new Date(),
   }
 }
